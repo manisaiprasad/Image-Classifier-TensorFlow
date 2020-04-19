@@ -1,5 +1,4 @@
 # all necessary imports.
-
 import warnings
 warnings.filterwarnings('ignore')
 import time
@@ -65,7 +64,7 @@ def predict(image_path, model, topk=5):
     prediction = model.predict(np.expand_dims(processed_test_image, axis=0))
     top_values, top_indices = tf.math.top_k(prediction, topk)
     # print("These are the top propabilities",top_values.numpy()[0])
-    top_classes = [class_names[str(value)] for value in top_indices.cpu().numpy()[0]]
+    top_classes = [class_names[str(value+1)] for value in top_indices.cpu().numpy()[0]]
     # print('Of these top classes', top_classes)
     
     return top_values.numpy()[0], top_classes
